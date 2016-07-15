@@ -5,6 +5,7 @@ let responseTime = require( 'koa-response-time' )
 let bodyparser = require( 'koa-bodyparser' )
 let logger = require( 'koa-logger' )
 let router = require( 'koa-router' )()
+let session = require( 'koa-session2' ).default
 
 let view = require( './koa-view' )
 let staticServer = require( './koa-static' )
@@ -13,7 +14,7 @@ let routers = require( '../routers' )
 
 exports.install = ( app ) => {
 
-	app.use( favicon(Config.favicon) )
+	app.use( favicon( Config.favicon ) )
 
 	app.use( responseTime() )
 
@@ -22,6 +23,8 @@ exports.install = ( app ) => {
 	app.use( staticServer( Config.static.root, Config.static.opt ) )
 
 	app.use( bodyparser() )
+
+	app.use( session() )
 
 	app.use( view( Config.view.root, Config.view.opt ) )
 
