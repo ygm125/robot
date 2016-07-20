@@ -9,6 +9,7 @@ let session = require( 'koa-session2' ).default
 
 let view = require( './koa-view' )
 let staticServer = require( './koa-static' )
+let csrf = require( './koa-csrf' )
 
 let routers = require( '../routers' )
 
@@ -25,6 +26,8 @@ exports.install = ( app ) => {
 	app.use( bodyparser() )
 
 	app.use( session() )
+
+	app.use( csrf() )
 
 	app.use( view( Config.view.root, Config.view.opt ) )
 
