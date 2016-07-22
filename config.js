@@ -11,14 +11,12 @@ let staticConf = {
 
 let viewConf = {
 	root: APP_PATH + '/www/view',
-	opt: {
-
-	}
+	opt: {}
 }
 
 global.Config = {
 	port: 8080,
-	keys: ['robot'],
+	keys: [ 'robot' ],
 	favicon: '',
 
 	db: {},
