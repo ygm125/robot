@@ -22,4 +22,4 @@ Middlewares.handleRouters()
 
 app.listen( Config.port )
 
-logger.log( `servers start at 127.0.0.1:${Config.port}` )
+logger.log( `server start at http://127.0.0.1:${Config.port}` )
