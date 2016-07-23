@@ -11,11 +11,26 @@ function cleanCache( modulePath ) {
 }
 
 function hotReload() {
-    chokidar.watch( [ Config.controller, Config.model ] ).on( 'change', ( path ) => {
+    let basePath = ROOT_PATH + '/base'
+    let middlePath = ROOT_PATH + '/middlewares'
+
+    let routersFile = ROOT_PATH + '/routers.js'
+    let configFile = ROOT_PATH + '/config.js'
+
+    chokidar.watch( routersFile ).on( 'change', ( path ) => {
+        cleanCache( path )
+
+        let router = require( middlePath ).getRouter()
+        router.stack = []
+
+        require( path ).init( router )
+    })
+
+    chokidar.watch( [ configFile, Config.controller, Config.model ] ).on( 'change', ( path ) => {
         cleanCache( path )
     })
 
-    chokidar.watch( [ Config.base ] ).on( 'change', ( path ) => {
+    chokidar.watch( basePath ).on( 'change', ( path ) => {
         cleanCache( path )
         require( path )
     })

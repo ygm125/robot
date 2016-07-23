@@ -37,3 +37,5 @@ exports.install = ( app ) => {
 exports.handleRouters = () => {
 	routers.init( router )
 }
+
+exports.getRouter = () => router

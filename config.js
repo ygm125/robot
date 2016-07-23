@@ -24,7 +24,6 @@ global.Config = {
 	static: staticConf,
 	view: viewConf,
 
-	base: ROOT_PATH + '/base',
 	app: APP_PATH,
 	model: APP_PATH + '/www/model',
 	controller: APP_PATH + '/www/controller'

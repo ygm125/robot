@@ -22,11 +22,12 @@ levels.forEach(( level ) => {
 let reflectAction = ( com ) => {
 	com = com.split( '.' )
 	let action = com.splice( com.length - 1, 1 )[ 0 ],
-		modPath = Config.controller + '/' + com.join( '/' ),
-		Mod = require( modPath ),
-		modIns = new Mod()
+		modPath = Config.controller + '/' + com.join( '/' )
 
 	return ( ctx, next ) => {
+		let Mod = require( modPath ),
+			modIns = new Mod()
+
 		return modIns[ action ]( ctx, next )
 	}
 }
