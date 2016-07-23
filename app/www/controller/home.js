@@ -6,7 +6,7 @@ class Home extends Base {
 	index( ctx ) {
 		this.assign( 'hello', ( done ) => {
 			setTimeout(() => {
-				done( 'hello robot!' )
+				done( 'hello robot1!' )
 			}, 100 )
 		})
 

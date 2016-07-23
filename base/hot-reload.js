@@ -36,4 +36,4 @@ function hotReload() {
     })
 }
 
-global.hotReload = hotReload
+exports.init = hotReload

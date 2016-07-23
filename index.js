@@ -23,7 +23,7 @@ Middlewares.handleRouters()
 app.listen( Config.port )
 
 if ( DEBUG ) {
-	hotReload()
+	require('base/hot-reload').init()
 }
 
 logger.log( `server start at http://127.0.0.1:${Config.port}` )
