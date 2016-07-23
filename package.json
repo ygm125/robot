@@ -1,7 +1,7 @@
 {
   "name": "robot",
   "version": "1.0.0",
-  "description": "",
+  "description": "A MVC framework based on koa2.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,5 +19,8 @@
     "koa-send": "^3.2.0",
     "koa-session2": "^1.0.8",
     "nunjucks": "^2.4.2"
+  },
+  "devDependencies": {
+    "chokidar": "^1.6.0"
   }
 }
