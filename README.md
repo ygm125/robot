@@ -22,7 +22,7 @@ ROBOT
 
 ## More
 
-- 目录机构说明
+- 目录结构说明
 
     - app 下存放静态资源与传统的 MVC 文件（Controller,Model,View）
     - base 下存放常用功能函数
@@ -32,34 +32,38 @@ ROBOT
 
 - 如何使用 Robot 开发
 
-    - 如项目示例，配置路由 `router.get( '/', reflectAction( 'home.index' ) )`,
-    自动映射到 app/www/controller 的实例方法
+    - 如项目示例，配置路由 
+        ```
+        router.get( '/', reflectAction( 'home.index' ) )
+        ```
+        自动映射到 app/www/controller 的实例方法
+
     - 框架提供简单的辅助方法，如同步设置数据 
-     ```
-        this.assign( 'config',{ })
-     ```
+        ```
+            this.assign( 'config',{ keys : 'xxx' })
+        ```
 
-     异步拉取数据
-     ```
-        this.assign( 'uinfo', ( done ) => {
-			setTimeout(() => {
-                done( {
-                    name : 'ygm'
-                } )
-			}, 100 )
-		})
-     ```
+        异步拉取数据
+        ```
+            this.assign( 'uinfo', ( done ) => {
+                setTimeout(() => {
+                    done( {
+                        name : 'ygm'
+                    } )
+                }, 100 )
+            })
+        ```
 
-     获取数据渲染
-     ```
-     return this.fetchData().then(( data ) => {
-		ctx.render( 'home/index', data )
-	 })
-     ```
+        获取数据渲染
+        ```
+        return this.fetchData().then(( data ) => {
+            ctx.render( 'home/index', data )
+        })
+        ```
 
-     fetchData 自动拉取数据，render 自动加载 view 下模板进行渲染
+        fetchData 自动拉取数据，render 自动加载 view 下模板进行渲染
 
-     - 项目默认使用 DEBUG 模式，经常会修改的文件会自动应用热更新
+    - 项目默认使用 DEBUG 模式，经常会修改的文件会自动应用热更新
 
 - 关于中间件
 
