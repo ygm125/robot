@@ -32,7 +32,7 @@ ROBOT
 
 - 如何使用 Robot 开发
 
-    - 如项目示例，配置路由 
+    - 如项目示例 routers.js，配置路由 
         ```
         router.get( '/', reflectAction( 'home.index' ) )
         ```
@@ -40,18 +40,18 @@ ROBOT
 
     - 框架提供简单的辅助方法，如同步设置数据 
         ```
-            this.assign( 'config',{ keys : 'xxx' })
+        this.assign( 'config',{ keys : 'xxx' })
         ```
 
         异步拉取数据
         ```
-            this.assign( 'uinfo', ( done ) => {
-                setTimeout(() => {
-                    done( {
-                        name : 'ygm'
-                    } )
-                }, 100 )
-            })
+        this.assign( 'uinfo', ( done ) => {
+            setTimeout(() => {
+                done( {
+                    name : 'ygm'
+                } )
+            }, 100 )
+        })
         ```
 
         获取数据渲染
@@ -63,7 +63,7 @@ ROBOT
 
         fetchData 自动拉取数据，render 自动加载 view 下模板进行渲染
 
-    - 项目默认使用 DEBUG 模式，经常会修改的文件会自动应用热更新
+    - 项目默认使用 DEBUG 模式，经常修改的文件会自动应用热更新
 
 - 关于中间件
 
@@ -80,12 +80,12 @@ ROBOT
     - csrf
     - koa-send
 
-    上面三个主要因为现在中间件不符和更新缓慢，所以内部维护
+    内部封装主要因为现有中间件不符和更新缓慢
 
     对于模板比对了一些主流的最终选用了 nunjucks，选它的原因是支持模板继承，
     不打断原有语义，语法简洁，注册 helper 方便，支持浏览器与服务端，同时也在维护更新
 
 ## Other
 
- 有任何问题可与我联系~
+有任何问题可与我联系~
 
