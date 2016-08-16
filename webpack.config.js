@@ -39,7 +39,7 @@ entryMap[ 'vendor' ] = `${srcPath}/js/base`
 let webConf = {
     entry: entryMap,
     module: {
-        noParse: [ /zepto/ ],
+        noParse: [ /jquery/ ],
         loaders: [
             {
                 test: /\.js$/,
@@ -64,11 +64,10 @@ let webConf = {
 }
 
 if ( true ) {
-    Object.keys( entryMap ).forEach(( key ) => {
-        entryMap[ key ] = [ 'webpack-hot-middleware/client?reload=1' ].concat( entryMap[ key ] )
-    })
-
-    webConf.entry = entryMap
+    // Object.keys( entryMap ).forEach(( key ) => {
+    //     entryMap[ key ] = [ 'koa-webpack-middleware/node_modules/webpack-hot-middleware/client?reload=1' ].concat( entryMap[ key ] )
+    // })
+    entryMap[ 'vendor' ] = [ 'koa-webpack-middleware/node_modules/webpack-hot-middleware/client?reload=1', entryMap[ 'vendor' ] ]
 
     webConf.module.loaders.push( { test: /\.css$/, loader: 'style!css' })
     webConf.module.loaders.push( { test: /\.less$/, loader: 'style!css!less' })
