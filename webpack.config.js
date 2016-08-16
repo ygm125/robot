@@ -67,13 +67,15 @@ if ( true ) {
     // Object.keys( entryMap ).forEach(( key ) => {
     //     entryMap[ key ] = [ 'koa-webpack-middleware/node_modules/webpack-hot-middleware/client?reload=1' ].concat( entryMap[ key ] )
     // })
-    entryMap[ 'vendor' ] = [ 'koa-webpack-middleware/node_modules/webpack-hot-middleware/client?reload=1', entryMap[ 'vendor' ] ]
 
+    entryMap[ 'vendor' ] = [ 'koa-webpack-middleware/node_modules/webpack-hot-middleware/client?reload=1', entryMap[ 'vendor' ] ]
+    webConf.output.filename = 'page/[name].js'
+
+    // add loader
     webConf.module.loaders.push( { test: /\.css$/, loader: 'style!css' })
     webConf.module.loaders.push( { test: /\.less$/, loader: 'style!css!less' })
 
-    webConf.output.filename = 'page/[name].js'
-
+    // add plugin
     webConf.plugins.push( new webpack.optimize.OccurenceOrderPlugin() )
     webConf.plugins.push( new webpack.HotModuleReplacementPlugin() )
     webConf.plugins.push( new webpack.NoErrorsPlugin() )

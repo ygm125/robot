@@ -26,7 +26,11 @@ if ( DEBUG ) {
 
 	app.use( devMiddleware( compiler, {
 		noInfo: false,
-		publicPath: webpackConf.output.publicPath
+		publicPath: webpackConf.output.publicPath,
+		stats: {
+			colors: true,
+			chunks: false
+		}
 	}) )
 
 	app.use( hotMiddleware( compiler ) )
