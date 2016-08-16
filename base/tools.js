@@ -1,21 +1,37 @@
 'use strict'
 
 let defaultLevel = 'info',
-	levels = [ 'info', 'debug', 'warn', 'error' ],
-	log = ( level, msgs ) => {
-		let args = [ `[${level.toUpperCase()}] ` ].concat( [].splice.call( msgs, 0 ) )
-		console.log( args )
-	},
-	logger = {
-		log() {
-			log( defaultLevel, arguments )
-		}
-	}
+    levels = [ 'info', 'debug', 'warn', 'error' ],
+    _log = ( level, msgs ) => {
+        let args = [ `[${level.toUpperCase()}] ` ].concat( msgs )
+        console.log.apply( console, args )
+    },
+    logger = {
+        log: function () {
+            /**
+             * https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
+             * leaking arguments would make V8 bailout.
+             */
+            let len = arguments.length,
+                args = new Array( len )
+
+            for ( let i = 0; i < len; i++ ) {
+                args[ i ] = arguments[ i ]
+            }
+            _log( defaultLevel, args )
+        }
+    }
 
 levels.forEach(( level ) => {
-	logger[ level ] = () => {
-		log( level, arguments )
-	}
+    logger[ level ] = function () {
+        let len = arguments.length,
+            args = new Array( len )
+
+        for ( let i = 0; i < len; i++ ) {
+            args[ i ] = arguments[ i ]
+        }
+        _log( level, args )
+    }
 })
 
 
