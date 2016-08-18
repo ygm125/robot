@@ -2,9 +2,14 @@
 
 global.ROOT_PATH = __dirname
 global.DEBUG = true
-if ( process.argv.indexOf( '--production' ) > -1 ) {
-	global.DEBUG = false
-}
+process.argv.some(( arg ) => {
+	if ( arg.indexOf( '--env' ) > -1 ) {
+		if ( arg.split( '=' )[ 1 ] != 'dev' ) {
+			global.DEBUG = false
+		}
+		return true
+	}
+})
 
 require( './config' )
 require( './base' )

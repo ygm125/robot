@@ -1,19 +1,31 @@
 'use strict'
 
-let path = require( 'path' )
-let fs = require( 'fs' )
-let webpack = require( 'webpack' )
-let Clean = require( 'clean-webpack-plugin' )
-let HtmlWebpackPlugin = require( 'html-webpack-plugin' )
-let ExtractTextPlugin = require( 'extract-text-webpack-plugin' )
+let path = require( 'path' ),
+    fs = require( 'fs' ),
+    webpack = require( 'webpack' ),
+    Clean = require( 'clean-webpack-plugin' ),
+    ExtractTextPlugin = require( 'extract-text-webpack-plugin' ),
+    ManifestPlugin = require( 'webpack-manifest-plugin' )
 
-let CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin
-let UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
+let CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin,
+    UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
 
 let rootPath = path.join( __dirname, 'app/static' ),
     srcPath = path.join( rootPath, 'src' ),
     virthPath = '/dist/',
-    distPath = path.join( rootPath, virthPath )
+    distPath = path.join( rootPath, virthPath ),
+    ENV = getEnv()
+
+function getEnv() {
+    let env = 'dev'
+    process.argv.some(( arg ) => {
+        if ( arg.indexOf( '--env' ) > -1 ) {
+            env = arg.split( '=' )[ 1 ]
+            return true
+        }
+    })
+    return env
+}
 
 function readDir( dir, map ) {
     dir = srcPath + '/' + ( dir || '' )
@@ -63,27 +75,38 @@ let webConf = {
     ]
 }
 
-if ( true ) {
-    // Object.keys( entryMap ).forEach(( key ) => {
-    //     entryMap[ key ] = [ 'koa-webpack-middleware/node_modules/webpack-hot-middleware/client?reload=1' ].concat( entryMap[ key ] )
-    // })
-
+if ( ENV === 'dev' ) {
     entryMap[ 'vendor' ] = [ 'koa-webpack-middleware/node_modules/webpack-hot-middleware/client?reload=1', entryMap[ 'vendor' ] ]
     webConf.output.filename = 'page/[name].js'
 
-    // add loader
     webConf.module.loaders.push( { test: /\.css$/, loader: 'style!css' })
     webConf.module.loaders.push( { test: /\.less$/, loader: 'style!css!less' })
 
-    // add plugin
     webConf.plugins.push( new webpack.optimize.OccurenceOrderPlugin() )
     webConf.plugins.push( new webpack.HotModuleReplacementPlugin() )
     webConf.plugins.push( new webpack.NoErrorsPlugin() )
-    // webConf.plugins.push( new Clean( [ distPath ] ) )
+
+} else if ( ENV === 'pro' ) {
+    webConf.output.filename = 'page/[name].[hash:5].js'
+
+    webConf.module.loaders.push( {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract( 'style', 'css?minimize' )
+    })
+    webConf.module.loaders.push( {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract( 'style', 'css?minimize', 'less' )
+    })
+    webConf.plugins.push( new ExtractTextPlugin( 'page/[name].[hash:5].css', {
+        allChunks: false
+    }) )
+
+    webConf.plugins.push( new ManifestPlugin() )
+    webConf.plugins.push( new UglifyJsPlugin() )
+    webConf.plugins.push( new Clean( [ distPath ] ) )
 }
 
 module.exports = webConf
-
 
 
 

@@ -29,12 +29,12 @@
     "clean-webpack-plugin": "^0.1.10",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.22.0",
     "koa-webpack-middleware": "^1.0.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-manifest-plugin": "^1.0.1"
   },
   "repository": {
     "type": "git",
