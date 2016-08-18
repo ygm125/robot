@@ -20,22 +20,25 @@ let viewConf = {
 		autoescape: false,
 		noCache: DEBUG ? true : false,
 		globals: {
-			useJs( arg ) {
-				if ( arg ) {
-					if ( !/\.js$/.test( arg ) ) {
-						arg += '.js'
+			useJs( file ) {
+				if ( file ) {
+					if ( !/\.js$/.test( file ) ) {
+						file += '.js'
 					}
-					arg = '/dist/' + staticConf.manifest[ arg ] || ( 'page/' + arg )
-					return `<script src="${arg}"></script>`
+					let filepath = '/dist/page/' + file
+					if ( staticConf.manifest[ file ] ) {
+						filepath = '/dist/' + staticConf.manifest[ file ]
+					}
+					return `<script src="${filepath}"></script>`
 				}
 			},
-			useCss( arg ) {
-				if ( !/\.css$/.test( arg ) ) {
-					arg += '.css'
+			useCss( file ) {
+				if ( !/\.css$/.test( file ) ) {
+					file += '.css'
 				}
-				arg = staticConf.manifest[ arg ]
-				if ( arg ) {
-					return `<link href="/dist/${arg}" rel="stylesheet" type="text/css" />`
+				file = staticConf.manifest[ file ]
+				if ( file ) {
+					return `<link href="/dist/${file}" rel="stylesheet" type="text/css" />`
 				}
 			}
 		}
