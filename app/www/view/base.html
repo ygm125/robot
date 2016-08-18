@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="{% block keywords %}{% endblock %}">
     <meta name="description" content="{% block description %}{% endblock %}">
-    {% block baseCss %} {% endblock %}
+    {% block baseCss %} 
+        {{ useCss('vendor') }}
+    {% endblock %}
     {% block pageCss %} {% endblock %}
 </head>
 <body>
 {% block header %} {% endblock %}
-
 {% block content %} {% endblock %}
-
 {% block footer %} {% endblock %}
 
 {% block baseJs %} 
-<script src="/dist/page/vendor.js"></script>
+    {{ useJs('vendor') }}
 {% endblock %}
 {% block pageJs %} {% endblock %}
 </body>

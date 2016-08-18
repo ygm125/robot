@@ -12,16 +12,15 @@ module.exports = ( path, opts ) => {
 
 	let filters = opts.filters || {}
 
-	Object.keys( filters, ( key ) => {
+	Object.keys( filters ).forEach(( key ) => {
 		env.addFilter( key, filters[ key ] )
-	} )
+	})
 
 	let globals = opts.globals || {}
 
-	Object.keys( globals, ( key ) => {
+	Object.keys( globals ).forEach(( key ) => {
 		env.addGlobal( key, globals[ key ] )
-	} )
-
+	})
 
 	return function view( ctx, next ) {
 		if ( ctx.render ) return next()

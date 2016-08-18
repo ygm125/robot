@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 
+{% block pageCss %} 
+    {{ useCss('home') }}
+{% endblock %}
+
 {% block content %}
    {{ hello }}
 {% endblock %}
 
-
 {% block pageJs %} 
-<script src="/dist/page/home.js"></script>
+    {{ useJs('home') }}
 {% endblock %}
 
