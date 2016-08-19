@@ -18,10 +18,6 @@ exports.install = ( app ) => {
 
 	app.use( responseTime() )
 
-	// if ( DEBUG ) {
-	// 	app.use( require( 'koa-logger' )() )
-	// }
-
 	app.use( staticServer( Config.static.root, Config.static.opt ) )
 
 	app.use( bodyparser() )

@@ -2,12 +2,11 @@
 
 global.ROOT_PATH = __dirname
 global.DEBUG = true
-process.argv.some(( arg ) => {
+process.argv.map(( arg ) => {
 	if ( arg.indexOf( '--env' ) > -1 ) {
 		if ( arg.split( '=' )[ 1 ] != 'dev' ) {
 			global.DEBUG = false
 		}
-		return true
 	}
 })
 
@@ -20,8 +19,9 @@ const Middlewares = require( './middlewares' )
 const app = new Koa()
 app.keys = Config.keys
 
+// 静态资源热更新
 if ( DEBUG ) {
-	require( 'babel-polyfill' )
+	require( 'babel-polyfill/node_modules/regenerator-runtime/runtime' )
 	let webpack = require( 'webpack' ),
 		webpackMiddleware = require( 'koa-webpack-middleware' ),
 		devMiddleware = webpackMiddleware.devMiddleware,
@@ -41,12 +41,18 @@ if ( DEBUG ) {
 	app.use( hotMiddleware( compiler ) )
 }
 
+// logger
+if ( DEBUG ) {
+	app.use( require( 'koa-logger' )() )
+}
+
 Middlewares.install( app )
 
 Middlewares.handleRouters()
 
 app.listen( Config.port )
 
+// node文件热更新
 if ( DEBUG ) {
 	require( './base/hot-reload' ).init()
 }
