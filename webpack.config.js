@@ -12,7 +12,7 @@ let CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin,
 
 let rootPath = path.join( __dirname, 'app/static' ),
     srcPath = path.join( rootPath, 'src' ),
-    virthPath = '/dist/',
+    virthPath = '/dist',
     distPath = path.join( rootPath, virthPath ),
     ENV = getEnv()
 
@@ -51,7 +51,7 @@ entryMap[ 'vendor' ] = `${srcPath}/js/base`
 let webConf = {
     entry: entryMap,
     module: {
-        noParse: [ /jquery/ ],
+        noParse: [ /(jquery|zepto)/ ],
         loaders: [
             {
                 test: /\.js$/,

@@ -4,7 +4,9 @@
   "description": "A MVC framework based on koa2.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node index.js",
+    "pro": "node index.js --env=pro",
+    "build": "./node_modules/.bin/webpack --env=pro"
   },
   "author": "GM",
   "license": "ISC",
@@ -13,7 +15,6 @@
     "koa": "^2.0.0",
     "koa-bodyparser": "^3.1.0",
     "koa-favicon": "^2.0.0",
-    "koa-logger": "^2.0.0",
     "koa-response-time": "^2.0.0",
     "koa-router": "^7.0.1",
     "koa-send": "^3.2.0",
@@ -21,6 +22,7 @@
     "nunjucks": "^2.4.2"
   },
   "devDependencies": {
+    "koa-logger": "^2.0.0",
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.13.0",

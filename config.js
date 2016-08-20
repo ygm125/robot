@@ -2,16 +2,19 @@
 
 let APP_PATH = ROOT_PATH + '/app'
 
+let virthPath = '/dist'
+
 let staticConf = {
 	root: APP_PATH + '/static',
-	manifest: {},
 	opt: {
+		virthPath: virthPath,
 		maxage: DEBUG ? 0 : 365 * 24 * 60 * 60
 	}
 }
 
+let manifest = {}
 try {
-	staticConf.manifest = require( `${staticConf.root}/dist/manifest.json` )
+	manifest = require( `${staticConf.root}${virthPath}/manifest.json` )
 } catch ( err ) { }
 
 let viewConf = {
@@ -25,9 +28,9 @@ let viewConf = {
 					if ( !/\.js$/.test( file ) ) {
 						file += '.js'
 					}
-					let filepath = '/dist/page/' + file
-					if ( staticConf.manifest[ file ] ) {
-						filepath = '/dist/' + staticConf.manifest[ file ]
+					let filepath = `${virthPath}/page/${file}`
+					if ( !DEBUG ) {
+						filepath = `${virthPath}/${manifest[ file ]}`
 					}
 					return `<script src="${filepath}"></script>`
 				}
@@ -36,9 +39,8 @@ let viewConf = {
 				if ( !/\.css$/.test( file ) ) {
 					file += '.css'
 				}
-				file = staticConf.manifest[ file ]
-				if ( file ) {
-					return `<link href="/dist/${file}" rel="stylesheet" type="text/css" />`
+				if ( !DEBUG ) {
+					return `<link href="${virthPath}/${manifest[ file ]}" rel="stylesheet" type="text/css" />`
 				}
 			}
 		}

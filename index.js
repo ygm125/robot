@@ -19,8 +19,11 @@ const Middlewares = require( './middlewares' )
 const app = new Koa()
 app.keys = Config.keys
 
-// 静态资源热更新
 if ( DEBUG ) {
+	// Logger time&size
+	app.use( require( 'koa-logger' )() )
+
+	// 静态资源热更新
 	require( 'babel-polyfill/node_modules/regenerator-runtime/runtime' )
 	let webpack = require( 'webpack' ),
 		webpackMiddleware = require( 'koa-webpack-middleware' ),
@@ -37,13 +40,7 @@ if ( DEBUG ) {
 			chunks: false
 		}
 	}) )
-
 	app.use( hotMiddleware( compiler ) )
-}
-
-// logger time&size
-if ( DEBUG ) {
-	app.use( require( 'koa-logger' )() )
 }
 
 Middlewares.install( app )
@@ -52,7 +49,7 @@ Middlewares.handleRouters()
 
 app.listen( Config.port )
 
-// node文件热更新
+// Node文件热更新
 if ( DEBUG ) {
 	require( './base/hot-reload' ).watch()
 }

@@ -15,6 +15,9 @@ module.exports = ( root, opts ) => {
 		}
 
 		if ( ctx.method == 'HEAD' || ctx.method == 'GET' ) {
+			if ( ctx.path.indexOf( opts.virthPath ) !== 0 ) {
+				return next()
+			}
 			return send( ctx, ctx.path, opts ).then( done => {
 				if ( !done ) {
 					return next()
