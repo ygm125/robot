@@ -28,7 +28,6 @@ function getEnv() {
 }
 
 function readDir( dir, map ) {
-    dir = srcPath + '/' + ( dir || '' )
     map = map || {}
 
     fs.readdirSync( dir ).forEach( function ( name ) {
@@ -45,7 +44,7 @@ function readDir( dir, map ) {
     return map
 }
 
-let entryMap = readDir( 'js/page' )
+let entryMap = readDir( `${srcPath}/js/page` )
 entryMap[ 'vendor' ] = `${srcPath}/js/base`
 
 let webConf = {
