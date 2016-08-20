@@ -1,5 +1,7 @@
 'use strict'
 
+/* global ROOT_PATH, DEBUG */
+
 let APP_PATH = ROOT_PATH + '/app'
 
 let virthPath = '/dist'
@@ -15,7 +17,7 @@ let staticConf = {
 let manifest = {}
 try {
 	manifest = require( `${staticConf.root}${virthPath}/manifest.json` )
-} catch ( err ) { }
+} catch ( err ) { manifest = {} }
 
 let viewConf = {
 	root: APP_PATH + '/www/view',

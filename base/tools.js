@@ -6,7 +6,7 @@ let defaultLevel = 'info',
         let args = [ `[${level.toUpperCase()}] ` ].concat( msgs )
         console.log.apply( console, args )
     },
-    logger = {
+    Logger = {
         log: function () {
             /**
              * https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#32-leaking-arguments
@@ -23,7 +23,7 @@ let defaultLevel = 'info',
     }
 
 levels.forEach(( level ) => {
-    logger[ level ] = function () {
+    Logger[ level ] = function () {
         let len = arguments.length,
             args = new Array( len )
 
@@ -36,18 +36,18 @@ levels.forEach(( level ) => {
 
 
 let reflectAction = ( com ) => {
-	com = com.split( '.' )
-	let action = com.splice( com.length - 1, 1 )[ 0 ],
-		modPath = Config.controller + '/' + com.join( '/' )
+    com = com.split( '.' )
+    let action = com.splice( com.length - 1, 1 )[ 0 ],
+        modPath = Config.controller + '/' + com.join( '/' )
 
-	return ( ctx, next ) => {
-		let Mod = require( modPath ),
-			modIns = new Mod()
+    return ( ctx, next ) => {
+        let Mod = require( modPath ),
+            modIns = new Mod()
 
-		return modIns[ action ]( ctx, next )
-	}
+        return modIns[ action ]( ctx, next )
+    }
 }
 
 
 global.reflectAction = reflectAction
-global.logger = logger
+global.Logger = Logger

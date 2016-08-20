@@ -1,5 +1,7 @@
 'use strict'
 
+/* global Config, DEBUG, Logger*/
+
 global.ROOT_PATH = __dirname
 global.DEBUG = true
 process.argv.map(( arg ) => {
@@ -56,4 +58,4 @@ if ( DEBUG ) {
 	require( './base/hot-reload' ).watch()
 }
 
-logger.log( `server start at http://127.0.0.1:${Config.port}` )
+Logger.log( `server start at http://127.0.0.1:${Config.port}` )

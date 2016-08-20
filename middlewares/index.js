@@ -1,5 +1,7 @@
 'use strict'
 
+/* global Config */
+
 let favicon = require( 'koa-favicon' )
 let responseTime = require( 'koa-response-time' )
 let bodyparser = require( 'koa-bodyparser' )
