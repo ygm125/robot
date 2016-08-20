@@ -41,7 +41,7 @@ if ( DEBUG ) {
 	app.use( hotMiddleware( compiler ) )
 }
 
-// logger
+// logger time&size
 if ( DEBUG ) {
 	app.use( require( 'koa-logger' )() )
 }
@@ -54,7 +54,7 @@ app.listen( Config.port )
 
 // node文件热更新
 if ( DEBUG ) {
-	require( './base/hot-reload' ).init()
+	require( './base/hot-reload' ).watch()
 }
 
 logger.log( `server start at http://127.0.0.1:${Config.port}` )

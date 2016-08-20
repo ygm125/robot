@@ -4,10 +4,10 @@ let chokidar = require( 'chokidar' )
 
 function cleanCache( modulePath ) {
     let module = require.cache[ modulePath ]
-    if ( module && module.parent ) {
+    if ( module.parent ) {
         module.parent.children.splice( module.parent.children.indexOf( module ), 1 )
     }
-    module && ( module = null )
+    require.cache[ modulePath ] = null
 }
 
 function hotReload() {
@@ -36,4 +36,4 @@ function hotReload() {
     })
 }
 
-exports.init = hotReload
+exports.watch = hotReload

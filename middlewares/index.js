@@ -14,9 +14,9 @@ let routers = require( '../routers' )
 
 exports.install = ( app ) => {
 
-	app.use( favicon( Config.favicon ) )
-
 	app.use( responseTime() )
+
+	app.use( favicon( Config.favicon ) )
 
 	app.use( staticServer( Config.static.root, Config.static.opt ) )
 
