@@ -23,7 +23,7 @@ app.keys = Config.keys
 
 if ( DEBUG ) {
 	// Logger time&size
-	app.use( require( 'koa-logger' )() )
+	// app.use( require( 'koa-logger' )() )
 
 	// 静态资源热更新
 	require( 'babel-polyfill/node_modules/regenerator-runtime/runtime' )
