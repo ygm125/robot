@@ -87,7 +87,7 @@ if ( ENV === 'dev' ) {
     webConf.plugins.push( new webpack.NoErrorsPlugin() )
 
 } else if ( ENV === 'pro' ) {
-    webConf.output.filename = 'page/[name].[hash:5].js'
+    webConf.output.filename = 'page/[name].[chunkhash:5].js'
 
     webConf.module.loaders.push( {
         test: /\.css$/,
@@ -97,7 +97,7 @@ if ( ENV === 'dev' ) {
         test: /\.less$/,
         loader: ExtractTextPlugin.extract( 'style', 'css?minimize', 'less' )
     })
-    webConf.plugins.push( new ExtractTextPlugin( 'page/[name].[hash:5].css', {
+    webConf.plugins.push( new ExtractTextPlugin( 'page/[name].[chunkhash:5].css', {
         allChunks: false
     }) )
 
