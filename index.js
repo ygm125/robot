@@ -10,6 +10,8 @@ process.argv.map(( arg ) => {
 	}
 })
 
+global.Promise = require( 'bluebird' )
+
 require( './config' )
 require( './base' )
 
