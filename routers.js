@@ -1,7 +1,5 @@
 'use strict'
 
-/* global reflectAction */
-
 exports.init = ( router ) => {
 	
 	router.get( '/', reflectAction( 'home.index' ) )

@@ -1,7 +1,5 @@
 'use strict'
 
-/* global Config, DEBUG, Logger*/
-
 global.ROOT_PATH = __dirname
 global.DEBUG = true
 process.argv.map(( arg ) => {

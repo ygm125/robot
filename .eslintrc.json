@@ -24,5 +24,12 @@
       "error",
       "never"
     ]
+  },
+  "globals": {
+    "Config": true,
+    "DEBUG": true,
+    "Logger": true,
+    "ROOT_PATH": true,
+    "reflectAction": true
   }
 }

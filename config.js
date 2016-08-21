@@ -1,7 +1,5 @@
 'use strict'
 
-/* global ROOT_PATH, DEBUG */
-
 let APP_PATH = ROOT_PATH + '/app'
 
 let virthPath = '/dist'
