@@ -18,7 +18,11 @@ ROBOT
 
 2、 进入代码根目录执行 `npm install`
 
-3、 启动应用 `node index.js`，访问 `http://127.0.0.1:8080/`
+3、开发模式启动 `npm run dev`
+
+生产模式：打包资源 `npm run build` ，启动 `npm run pro`
+
+4、访问 `http://127.0.0.1:8080/`
 
 ## More
 
@@ -74,7 +78,6 @@ ROBOT
     - koa-logger
     - koa-response-time
     - koa-router
-    - koa-session2
     - `***** 以下为内部封装 *******`
     - nunjucks
     - csrf
@@ -85,9 +88,12 @@ ROBOT
     对于模板比对了一些主流的最终选用了 nunjucks，选它的原因是支持模板继承，
     不打断原有语义，语法简洁，注册 helper 方便，支持浏览器与服务端，同时也在维护更新
 
+- 静态资源
+
+    静态资源采用 webpack 打包，模块化书写，开发模式资源自动更新，生产模式加载 MD5 版本
+
 ## Other
 
 有任何问题可与我联系~
 
-未完待续……
 
