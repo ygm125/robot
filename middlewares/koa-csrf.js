@@ -3,11 +3,10 @@
 const Tokens = require( 'csrf' )
 
 module.exports = ( opts ) => {
-	opts = Object.assign( {
-		httpOnly: true,
-		signed: false,
-		cookieName: '__csrf'
-	}, opts )
+	opts = opts || {}
+	opts.httpOnly = opts.httpOnly || true
+	opts.signed = opts.signed || false
+	opts.cookieName = opts.cookieName || '__csrf'
 
 	let tokens = Tokens( opts )
 
