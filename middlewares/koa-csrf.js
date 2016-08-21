@@ -3,25 +3,29 @@
 const Tokens = require( 'csrf' )
 
 module.exports = ( opts ) => {
-	let tokens = Tokens( opts || {})
+	opts = Object.assign( {
+		httpOnly: true,
+		signed: false,
+		cookieName: '__csrf'
+	}, opts )
+
+	let tokens = Tokens( opts )
 
 	return function csrf( ctx, next ) {
-		if ( ctx.method == 'GET' || ctx.method == 'HEAD' || ctx.method == 'OPTIONS' ) {
-			return next()
-		}
 
 		ctx.__defineGetter__( 'csrf', function () {
 			if ( this._csrf ) return this._csrf
-			if ( !this.session ) return null
-			let secret = this.session.secret
-				|| ( this.session.secret = tokens.secretSync() )
+			let secret = this.cookies.get( opts.cookieName )
+			if ( !secret ) {
+				secret = tokens.secretSync()
+				this.cookies.set( opts.cookieName, secret, opts )
+			}
 			return this._csrf = tokens.create( secret )
 		})
 
 		ctx.assertCsrf = function ( body ) {
-			let secret = this.session.secret
+			let secret = this.cookies.get( opts.cookieName )
 			if ( !secret ) this.throw( 403, 'secret is missing' )
-
 			let token = ( body && body._csrf )
 				|| ( !opts.disableQuery && ctx.query && ctx.query._csrf )
 				|| ( ctx.get( 'x-csrf-token' ) )
@@ -29,8 +33,7 @@ module.exports = ( opts ) => {
 				|| body
 			if ( !token ) this.throw( 403, 'token is missing' )
 			if ( !tokens.verify( secret, token ) ) this.throw( 403, 'invalid csrf token' )
-
-			return this
+			return true
 		}
 
 		return next()
