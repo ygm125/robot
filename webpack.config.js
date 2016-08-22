@@ -60,7 +60,10 @@ let webConf = {
         ]
     },
     resolve: {
-        root: [ `${srcPath}/js`, `${srcPath}/less` ]
+        root: [ `${srcPath}/js`, `${srcPath}/less` ],
+        alias: {
+            'jquery': 'lib/jquery'
+        }
     },
     output: {
         path: distPath,
@@ -70,6 +73,10 @@ let webConf = {
         new CommonsChunkPlugin( {
             name: 'vendor',
             minChunks: Infinity
+        }),
+        new webpack.ProvidePlugin( {
+            $: 'jquery',
+            jQuery: 'jquery'
         })
     ]
 }

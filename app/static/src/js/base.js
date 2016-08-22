@@ -1,3 +1,3 @@
 require('base.less')
-require('lib/jquery')
+require('jquery')
 require('common/nav')
