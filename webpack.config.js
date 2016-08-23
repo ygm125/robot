@@ -110,6 +110,8 @@ if ( ENV === 'dev' ) {
     webConf.plugins.push( new ManifestPlugin() )
     webConf.plugins.push( new UglifyJsPlugin() )
     webConf.plugins.push( new Clean( [ distPath ] ) )
+
+    webConf.devtool = 'cheap-source-map'
 }
 
 module.exports = webConf
