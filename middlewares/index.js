@@ -9,8 +9,6 @@ let view = require( './koa-view' )
 let staticServer = require( './koa-static' )
 let csrf = require( './koa-csrf' )
 
-let routers = require( '../routers' )
-
 exports.install = ( app ) => {
 
 	app.use( responseTime() )
@@ -28,7 +26,7 @@ exports.install = ( app ) => {
 	app.use( router.routes() ).use( router.allowedMethods() )
 }
 
-exports.handleRouters = () => {
+exports.handleRouters = ( routers) => {
 	routers.init( router )
 }
 

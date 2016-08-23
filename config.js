@@ -1,6 +1,6 @@
 'use strict'
 
-let APP_PATH = ROOT_PATH + '/app'
+let APP_PATH = ROOT_PATH
 
 let virthPath = '/dist'
 
@@ -47,7 +47,7 @@ let viewConf = {
 	}
 }
 
-global.Config = {
+module.exports = {
 	port: 8080,
 	keys: [ 'robot' ],
 	favicon: '',

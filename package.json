@@ -3,11 +3,6 @@
   "version": "1.0.0",
   "description": "A MVC framework based on koa2.0",
   "main": "index.js",
-  "scripts": {
-    "dev": "node index.js",
-    "pro": "node index.js --env=pro",
-    "build": "./node_modules/.bin/webpack --env=pro"
-  },
   "author": "GM",
   "license": "ISC",
   "dependencies": {

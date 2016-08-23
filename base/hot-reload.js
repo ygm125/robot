@@ -11,8 +11,8 @@ function cleanCache( modulePath ) {
 }
 
 function hotReload() {
-    let basePath = ROOT_PATH + '/base'
-    let middlePath = ROOT_PATH + '/middlewares'
+    let extendPath = ROOT_PATH + '/extend'
+    let middlePath = '../middlewares'
 
     let routersFile = ROOT_PATH + '/routers.js'
     let configFile = ROOT_PATH + '/config.js'
@@ -30,7 +30,7 @@ function hotReload() {
         cleanCache( path )
     })
 
-    chokidar.watch( basePath ).on( 'change', ( path ) => {
+    chokidar.watch( extendPath ).on( 'change', ( path ) => {
         cleanCache( path )
         require( path )
     })

@@ -10,7 +10,8 @@ let path = require( 'path' ),
 let CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin,
     UglifyJsPlugin = webpack.optimize.UglifyJsPlugin
 
-let rootPath = path.join( __dirname, 'app/static' ),
+
+let rootPath = path.join( __dirname, '../../static' ),
     srcPath = path.join( rootPath, 'src' ),
     virthPath = '/dist',
     distPath = path.join( rootPath, virthPath ),

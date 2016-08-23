@@ -2,5 +2,3 @@
 .vscode
 
 node_modules
-
-app/static/dist/

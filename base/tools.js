@@ -48,6 +48,13 @@ let reflectAction = ( com ) => {
     }
 }
 
+function safeRequire( mod ) {
+    try {
+        return require( mod )
+    } catch ( err ) {
+    }
+}
 
+global.safeRequire = safeRequire
 global.reflectAction = reflectAction
 global.Logger = Logger
