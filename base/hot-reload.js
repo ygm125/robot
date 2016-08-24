@@ -4,6 +4,10 @@ let chokidar = require( 'chokidar' )
 
 function cleanCache( modulePath ) {
     let module = require.cache[ modulePath ]
+    if ( !module ) {
+        return
+    }
+
     if ( module.parent ) {
         module.parent.children.splice( module.parent.children.indexOf( module ), 1 )
     }
