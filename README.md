@@ -14,23 +14,24 @@ ROBOT
 
 ## How
 
-1、 选一个目录执行 `git clone https://github.com/ygm125/robot.git`
+1、 安装脚手架工具 `npm install -g robot-cli`
 
-2、 进入代码根目录执行 `npm install`
+2、 执行 `robot -d myapp` myapp 为项目名
 
-3、开发模式启动 `npm run dev`
+3、 `cd myapp && npm install` 安装依赖
+
+4、 开发模式：`npm run dev` 
 
 生产模式：打包资源 `npm run build` ，启动 `npm run pro`
 
-4、访问 `http://127.0.0.1:8080/`
+5、访问 `http://127.0.0.1:8080/`
 
 ## More
 
 - 目录结构说明
 
-    - app 下存放静态资源与传统的 MVC 文件（Controller,Model,View）
-    - base 下存放常用功能函数
-    - middlewares 下初始第三方与手工维护的 Koa 中间件
+    - www 传统的 MVC 目录（Controller,Model,View）
+    - static 静态资源目录
     - index.js 为入口文件
     - routers.js 配置路由
 
@@ -40,7 +41,7 @@ ROBOT
         ```
         router.get( '/', reflectAction( 'home.index' ) )
         ```
-        自动映射到 app/www/controller 的实例方法
+        自动映射到 www/controller 的实例方法
 
     - 框架提供简单的辅助方法，如同步设置数据 
         ```
@@ -71,11 +72,10 @@ ROBOT
 
 - 关于中间件
 
-    Robot 加载了些细选的必要中间件
+    Robot 加载了些中间件
 
     - koa-favicon
     - koa-bodyparser
-    - koa-logger
     - koa-response-time
     - koa-router
     - `***** 以下为内部封装 *******`
