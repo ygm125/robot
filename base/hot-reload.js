@@ -11,11 +11,10 @@ function cleanCache( modulePath ) {
 }
 
 function hotReload() {
-    let extendPath = ROOT_PATH + '/extend'
     let middlePath = '../middlewares'
-
-    let routersFile = ROOT_PATH + '/routers.js'
-    let configFile = ROOT_PATH + '/config.js'
+    let extendPath = ROOT_PATH + '/extend'
+    let routersFile = ROOT_PATH + '/routers'
+    let configFile = ROOT_PATH + '/config'
 
     chokidar.watch( routersFile ).on( 'change', ( path ) => {
         cleanCache( path )
