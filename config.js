@@ -1,52 +1,5 @@
 'use strict'
 
-let APP_PATH = ROOT_PATH
-
-let virthPath = '/dist'
-
-let staticConf = {
-	root: APP_PATH + '/static',
-	opt: {
-		virthPath: virthPath,
-		maxage: DEBUG ? 0 : 365 * 24 * 60 * 60
-	}
-}
-
-let manifest = {}
-try {
-	manifest = require( `${staticConf.root}${virthPath}/manifest.json` )
-} catch ( err ) { manifest = {} }
-
-let viewConf = {
-	root: APP_PATH + '/www/view',
-	opt: {
-		autoescape: false,
-		noCache: DEBUG ? true : false,
-		globals: {
-			useJs( file ) {
-				if ( file ) {
-					if ( !/\.js$/.test( file ) ) {
-						file += '.js'
-					}
-					let filepath = `${virthPath}/page/${file}`
-					if ( !DEBUG ) {
-						filepath = `${virthPath}/${manifest[ file ]}`
-					}
-					return `<script src="${filepath}"></script>`
-				}
-			},
-			useCss( file ) {
-				if ( !/\.css$/.test( file ) ) {
-					file += '.css'
-				}
-				if ( !DEBUG ) {
-					return `<link href="${virthPath}/${manifest[ file ]}" rel="stylesheet" type="text/css" />`
-				}
-			}
-		}
-	}
-}
-
 module.exports = {
 	port: 8080,
 	keys: [ 'robot' ],
@@ -54,10 +7,22 @@ module.exports = {
 
 	db: {},
 
-	static: staticConf,
-	view: viewConf,
+	static: {
+		root: ROOT_PATH + '/static',
+		opt: {
+			publicPath: '/dist/',
+			maxage: DEBUG ? 0 : 365 * 24 * 60 * 60
+		}
+	},
+	view: {
+		root: ROOT_PATH + '/www/view',
+		opt: {
+			autoescape: false,
+			noCache: DEBUG ? true : false
+		}
+	},
 
-	app: APP_PATH,
-	model: APP_PATH + '/www/model',
-	controller: APP_PATH + '/www/controller'
+	app: ROOT_PATH,
+	model: ROOT_PATH + '/www/model',
+	controller: ROOT_PATH + '/www/controller'
 }
