@@ -32,6 +32,6 @@
     "ROOT_PATH": true,
     "reflectAction": true,
     "safeRequire": true,
-    "Extend": true
+    "deepAssign": true
   }
 }
