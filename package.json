@@ -1,6 +1,6 @@
 {
   "name": "robot-frame",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A MVC framework based on koa2.0",
   "main": "index.js",
   "author": "GM",
