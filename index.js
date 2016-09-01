@@ -19,8 +19,7 @@ robotFrame.appInit( function () {
 	// 加载初始工具函数
 	require( './base/tools' )
 	// 自动合并全局配置
-	let Config = Object.assign( require( './config' ), safeRequire( ROOT_PATH + '/config' ) )
-	global.Config = Config
+	global.Config = Extend( require( './config' ), safeRequire( ROOT_PATH + '/config' ) )
 })
 
 robotFrame.preAppLoad( function () {

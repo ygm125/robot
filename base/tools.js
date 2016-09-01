@@ -55,6 +55,22 @@ function safeRequire( mod ) {
     }
 }
 
+
+function Extend( target, source ) {
+    let args = [].slice.call( arguments ), key,
+        ride = typeof args[ args.length - 1 ] == 'boolean' ? args.pop() : true
+    target = target || {}
+    for ( let i = 1; source = args[ i++ ]; ) {
+        for ( key in source ) {
+            if ( ride || !( key in target ) ) {
+                target[ key ] = source[ key ]
+            }
+        }
+    }
+    return target
+}
+
+global.Extend = Extend
 global.safeRequire = safeRequire
 global.reflectAction = reflectAction
 global.Logger = Logger

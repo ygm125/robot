@@ -31,6 +31,7 @@
     "Logger": true,
     "ROOT_PATH": true,
     "reflectAction": true,
-    "safeRequire": true
+    "safeRequire": true,
+    "Extend": true
   }
 }
