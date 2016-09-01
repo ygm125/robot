@@ -30,6 +30,7 @@
     "DEBUG": true,
     "Logger": true,
     "ROOT_PATH": true,
-    "reflectAction": true
+    "reflectAction": true,
+    "safeRequire": true
   }
 }
