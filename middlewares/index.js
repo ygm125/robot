@@ -1,13 +1,13 @@
 'use strict'
 
-let favicon = require( 'koa-favicon' )
-let responseTime = require( 'koa-response-time' )
-let bodyparser = require( 'koa-bodyparser' )
-let router = require( 'koa-router' )()
+const favicon = require( 'koa-favicon' )
+const responseTime = require( 'koa-response-time' )
+const bodyparser = require( 'koa-bodyparser' )
+const router = require( 'koa-router' )()
 
-let view = require( './koa-view' )
-let staticServer = require( './koa-static' )
-let csrf = require( './koa-csrf' )
+const view = require( './koa-view' )
+const staticServer = require( './koa-static' )
+const csrf = require( './koa-csrf' )
 
 exports.install = ( app ) => {
 
@@ -26,7 +26,7 @@ exports.install = ( app ) => {
 	app.use( router.routes() ).use( router.allowedMethods() )
 }
 
-exports.handleRouters = ( routers) => {
+exports.handleRouters = ( routers ) => {
 	routers.init( router )
 }
 

@@ -5,26 +5,28 @@ const Koa = require( 'koa' )
 class Robot extends Koa {
 	constructor() {
 		super()
+
 		this.liftHook = {
-			preAppInit: [],
-			appInit: [],
-			preAppLoad: [],
+			beforeAppLoad: [],
 			appLoad: []
 		}
-		this.init()
+
+		this.__init()
 	}
-	init() {
-		Object.keys( this.liftHook ).forEach(( key ) => {
+	__init() {
+
+		objEach( this.liftHook, ( key ) => {
 			this[ key ] = ( hook ) => {
 				this.liftHook[ key ].push( hook )
 			}
 		})
+
 	}
 	run() {
 
-		Object.keys( this.liftHook ).forEach(( key ) => {
-			this.liftHook[ key ].forEach(( fn ) => {
-				fn.call( this )
+		objEach( this.liftHook, ( key, hooks ) => {
+			hooks.forEach(( fn ) => {
+				fn( this )
 			})
 		})
 

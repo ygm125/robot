@@ -55,8 +55,15 @@ function safeRequire( mod ) {
     }
 }
 
-global.deepAssign = require( 'deep-assign' )
+function objEach( obj, fn ) {
+    Object.keys( obj ).forEach(( key ) => {
+        fn( key, obj[ key ], obj )
+    })
+}
 
+global.Promise = require( 'bluebird' )
+global.deepAssign = require( 'deep-assign' )
+global.objEach = objEach
 global.safeRequire = safeRequire
 global.reflectAction = reflectAction
 global.Logger = Logger

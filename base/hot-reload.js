@@ -1,6 +1,6 @@
 'use strict'
 
-let chokidar = require( 'chokidar' )
+const chokidar = require( 'chokidar' )
 
 function cleanCache( modulePath ) {
     let module = require.cache[ modulePath ]

@@ -1,34 +1,27 @@
 'use strict'
 
 global.DEBUG = true
-process.argv.map(( arg ) => {
-	if ( arg.indexOf( '--env' ) > -1 ) {
-		if ( arg.split( '=' )[ 1 ] != 'dev' ) {
-			global.DEBUG = false
-		}
-	}
-})
+if ( process.env.NODE_ENV === 'production' ) {
+	global.DEBUG = false
+}
 
-global.Promise = require( 'bluebird' )
+global.ROOT_PATH = global.ROOT_PATH || __dirname
 
-let Robot = require( './base/robot' )
+// 全局功能函数
+require( './base/common' )
 
-let robotFrame = new Robot()
+// 自动合并全局配置
+global.Config = deepAssign( require( './config' ), safeRequire( ROOT_PATH + '/config' ) )
 
-robotFrame.appInit( function () {
-	// 加载初始工具函数
-	require( './base/tools' )
-	// 自动合并全局配置
-	global.Config = deepAssign( require( './config' ), safeRequire( ROOT_PATH + '/config' ) )
-})
+const Robot = require( './base/robot' )
 
-robotFrame.preAppLoad( function () {
-	this.keys = Config.keys
-})
+const robotFrame = new Robot()
 
-robotFrame.appLoad( function () {
+robotFrame.keys = Config.keys
+
+robotFrame.appLoad(() => {
 	let Middlewares = require( './middlewares' )
-	Middlewares.install( this )
+	Middlewares.install( robotFrame )
 	Middlewares.handleRouters( safeRequire( ROOT_PATH + '/routers' ) )
 })
 
