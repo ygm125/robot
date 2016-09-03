@@ -1,6 +1,6 @@
 'use strict'
 
-const chokidar = require( 'chokidar' )
+let fs = require( 'fs' )
 
 function cleanCache( modulePath ) {
     let module = require.cache[ modulePath ]
@@ -18,18 +18,21 @@ function hotReload() {
     let middlePath = '../middlewares'
     let routersFile = ROOT_PATH + '/routers'
 
-    chokidar.watch( routersFile ).on( 'change', ( path ) => {
-        cleanCache( path )
+    fs.watch( routersFile, ( event, filename ) => {
+        cleanCache( filename )
 
         let router = require( middlePath ).getRouter()
         router.stack = []
 
-        require( path ).init( router )
+        require( filename ).init( router )
     })
 
-    chokidar.watch( [ Config.controller, Config.model ] ).on( 'change', ( path ) => {
-        cleanCache( path )
+    [ Config.controller, Config.model ].forEach(( dir ) => {
+        fs.watch( dir, { recursive: true }, ( event, filename ) => {
+            cleanCache( filename )
+        })
     })
+
 }
 
 exports.watch = hotReload
