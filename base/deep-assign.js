@@ -21,6 +21,8 @@ function assign( to, from ) {
         return to
     }
 
+    from = Object( from )
+    
     for ( let key in from ) {
         if ( hasOwnProperty.call( from, key ) ) {
             assignKey( to, from, key )
