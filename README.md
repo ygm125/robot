@@ -24,7 +24,7 @@ mode 指生成的项目类型，选值 common、vue、react
 
 path 指项目生成到的目录
 
-robot-cli 详细说明 https://github.com/ygm125/robot-cli
+[robot-cli 详细说明](https://github.com/ygm125/robot-cli)
 
 ## More
 
@@ -35,6 +35,8 @@ robot-cli 详细说明 https://github.com/ygm125/robot-cli
     - index.js 为入口文件
     - routers.js 配置路由
     - config.js 配置文件
+
+    可执行 `npm run demo` 查看效果
 
 - 如何使用 Robot 开发
 
@@ -72,8 +74,6 @@ robot-cli 详细说明 https://github.com/ygm125/robot-cli
     - 项目默认使用 DEBUG 模式，经常修改的文件会自动应用热更新
 
 - 关于模块依赖
-
-    Robot 的依赖
 
     - `***** 依赖中间件 *******`
     - koa-favicon
