@@ -9,31 +9,32 @@ ROBOT
 
 基于 Koa 是因为它提供了一个极小的核心的 Node http 服务，同时基于中间件方式很方便扩展，
 但是 Koa 当一个框架用还远远不够，需要自己开发或用第三方的中间件来组装自己的应用，
-第三方中间件很多质量参差不齐、更新缓慢，所以催生了 Robot，精挑细选了些必用中间件，
-同时内部处理维护了一些中间件，以达到迅速使用 Koa 开发自己的应用目的
+第三方中间件很多质量参差不齐、更新缓慢，所以催生了 Robot，整合了常用中间件，
+以达到迅速使用 Koa 开发自己的应用目的
 
 ## How
 
-1、 安装脚手架工具 `npm install -g robot-cli`
+独立安装框架 `npm install -S robot-frame`
 
-2、 执行 `robot -d myapp` myapp 为项目名
+或安装脚手架工具 `npm install -g robot-cli`
 
-3、 `cd myapp && npm install` 安装依赖
+脚手架可以帮你自动生成项目目录结构 ==》`robot -c mode -d path`
 
-4、 开发模式：`npm run dev` 
+mode 指生成的项目类型，选值 common、vue、react
 
-生产模式：打包资源 `npm run build` ，启动 `npm run pro`
+path 指项目生成到的目录
 
-5、访问 `http://127.0.0.1:8080/`
+robot-cli 详细说明 https://github.com/ygm125/robot-cli
 
 ## More
 
-- 目录结构说明
+- 框架 demo 目录演示了常规项目结构
 
     - www 传统的 MVC 目录（Controller,Model,View）
     - static 静态资源目录
     - index.js 为入口文件
     - routers.js 配置路由
+    - config.js 配置文件
 
 - 如何使用 Robot 开发
 
@@ -70,27 +71,20 @@ ROBOT
 
     - 项目默认使用 DEBUG 模式，经常修改的文件会自动应用热更新
 
-- 关于中间件
+- 关于模块依赖
 
-    Robot 加载了些中间件
+    Robot 的依赖
 
+    - `***** 依赖中间件 *******`
     - koa-favicon
     - koa-bodyparser
     - koa-response-time
     - koa-router
-    - `***** 以下为内部封装 *******`
+    - `***** 依赖模块 *******`
+    - bluebird
     - nunjucks
     - csrf
     - koa-send
-
-    内部封装主要因为现有中间件不符和更新缓慢
-
-    对于模板比对了一些主流的最终选用了 nunjucks，选它的原因是支持模板继承，
-    不打断原有语义，语法简洁，注册 helper 方便，支持浏览器与服务端，同时也在维护更新
-
-- 静态资源
-
-    静态资源采用 webpack 打包，模块化书写，开发模式资源自动更新，生产模式加载 MD5 版本
 
 ## Other
 
