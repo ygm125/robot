@@ -28,15 +28,15 @@ path 指项目生成到的目录
 
 ## More
 
-- 框架 demo 目录演示了常规项目结构
+demo 目录为演示的常规项目，可执行 `npm run demo` 配合下面的说明加深使用理解
+
+- 框架常规目录结构
 
     - www 传统的 MVC 目录（Controller,Model,View）
     - static 静态资源目录
     - index.js 为入口文件
     - routers.js 配置路由
     - config.js 配置文件
-
-    可执行 `npm run demo` 查看效果
 
 - 如何使用 Robot 开发
 
