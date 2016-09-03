@@ -33,6 +33,7 @@
     "reflectAction": true,
     "safeRequire": true,
     "deepAssign": true,
-    "objEach":true
+    "objEach": true,
+    "isObject": true
   }
 }

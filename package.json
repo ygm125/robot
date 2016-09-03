@@ -9,7 +9,6 @@
     "bluebird": "^3.4.1",
     "chokidar": "^1.6.0",
     "csrf": "^3.0.3",
-    "deep-assign": "^2.0.0",
     "koa": "^2.0.0",
     "koa-bodyparser": "^3.1.0",
     "koa-favicon": "^2.0.0",

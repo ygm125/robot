@@ -61,9 +61,17 @@ function objEach( obj, fn ) {
     })
 }
 
+
+let toString = Object.prototype.toString
+function isObject( val ) {
+    return toString.call( val ) === '[object Object]'
+}
+
 global.Promise = require( 'bluebird' )
-global.deepAssign = require( 'deep-assign' )
+global.deepAssign = require( './deep-assign' )
+global.isObject = isObject
 global.objEach = objEach
 global.safeRequire = safeRequire
-global.reflectAction = reflectAction
 global.Logger = Logger
+global.reflectAction = reflectAction
+
