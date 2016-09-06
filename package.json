@@ -4,7 +4,8 @@
   "description": "A MVC framework based on koa2.0",
   "main": "index.js",
   "scripts": {
-    "demo": "node ./demo"
+    "demo": "node ./demo",
+    "test": "echo ok"
   },
   "dependencies": {
     "bluebird": "^3.4.1",
