@@ -13,8 +13,9 @@ function assignKey( to, from, key ) {
         to[ key ] = val
     } else {
         to[ key ] = assign( Object( to[ key ] ), from[ key ] )
-    } 
+    }
 }
+
 
 function assign( to, from ) {
     if ( to === from ) {
