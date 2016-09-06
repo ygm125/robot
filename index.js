@@ -1,6 +1,7 @@
 'use strict'
 
 global.DEBUG = true
+
 if ( process.env.NODE_ENV === 'production' ) {
 	global.DEBUG = false
 }
