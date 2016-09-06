@@ -1,6 +1,9 @@
 ROBOT
 ========
 
+[![NPM version][http://img.shields.io/npm/v/robot.svg]][https://npmjs.org/package/robot]
+[![Build Status](https://travis-ci.org/ygm125/robot.svg?branch=master)](https://travis-ci.org/ygm125/robot)
+
 ## What
 
 一个基于 Koa 2.0 的 MVC 框架
