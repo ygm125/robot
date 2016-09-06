@@ -3,7 +3,7 @@ node_js:
   - '4'
 deploy:
   provider: npm
-  skip_cleanup: true
+  email: '125355665@qq.com'
   api_key: '71e0e0b4-2f37-4886-92b2-80929244d7c9'
   on:
     branch: master
