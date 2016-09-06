@@ -1,7 +1,7 @@
 ROBOT
 ========
 
-[![NPM version](http://img.shields.io/npm/v/robot.svg)](https://npmjs.org/package/robot)
+[![NPM version](http://img.shields.io/npm/v/robot-frame.svg)](https://npmjs.org/package/robot-frame)
 [![Build Status](https://travis-ci.org/ygm125/robot.svg?branch=master)](https://travis-ci.org/ygm125/robot)
 
 ## What
