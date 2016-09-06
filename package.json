@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "demo": "node ./demo",
-    "test": "node ./demo"
+    "test": "node ./demo && process.exit()"
   },
   "dependencies": {
     "bluebird": "^3.4.1",
